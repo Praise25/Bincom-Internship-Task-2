@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   <%- include("../partials/head.ejs") %> 
-    <title>Polling Units</title>
-  </head>
-  <body>
-    <%- include("../partials/navbar.ejs") %> 
-    <div class="container d-flex justify-content-center my-5">
-      <div class="card">
-        <ul class="list-group list-group-flush">
-          <% for( let result of results ) { %>
-            <% if (result.polling_unit_name) { %> 
-              <a href="polling-units/<%= result.polling_unit_id %>/result" class="list-group-item">
-                <%= result.polling_unit_name %> - <%= result.polling_unit_number %>
-              </a>
-            <% } %> 
-          <% } %>
-        </ul>
-      </div>
-    </div>
 
-    <%- include("../partials/bs-script.ejs") %> 
-  </body>
+<head>
+  <%- include("../partials/head.ejs") %>
+  <link rel="stylesheet" href="/stylesheets/units.css">
+  <title>Polling Units</title>
+</head>
+
+<body>
+  <%- include("../partials/navbar.ejs") %>
+  <div class="container d-flex align-items-center my-5 flex-column">
+    <h3>Select a polling unit to view it's results</h3>
+
+    <form action="/polling-units" method="POST">
+      <select name="polling_unit_id" class="form-select">
+        <% for( let result of results) { %>
+          <% if (result.polling_unit_name) { %>
+            <option value="<%= result.polling_unit_id %>" ><%= result.polling_unit_name %> - <%= result.polling_unit_number %></option>
+          <% } %>
+        <% } %>
+      </select>
+
+      <button class="btn btn-success">Show Result</button>
+    </form>
+  </div>
+
+  <%- include("../partials/bs-script.ejs") %>
+</body>
+
 </html>

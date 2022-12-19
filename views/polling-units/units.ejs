@@ -15,6 +15,7 @@
     <form action="/polling-units" method="POST">
       <select name="polling_unit_id" class="form-select">
         <% for( let result of results) { %>
+          <!-- Filter out polling units with incomplete data -->
           <% if (result.polling_unit_name) { %>
             <option value="<%= result.polling_unit_id %>" ><%= result.polling_unit_name %> - <%= result.polling_unit_number %></option>
           <% } %>

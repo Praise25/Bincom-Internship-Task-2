@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <%- include("../partials/head.ejs") %> 
+    <title>Polling Units</title>
+  </head>
+  <body>
+    <div class="container d-flex justify-content-center mt-3">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <% for( let result of results ) { %>
+            <% if (result.polling_unit_name) { %> 
+              <a href="polling-units/<%= result.polling_unit_id %>/result" class="list-group-item">
+                <%= result.polling_unit_name %> - <%= result.polling_unit_number %>
+              </a>
+            <% } %> 
+          <% } %>
+        </ul>
+      </div>
+    </div>
+
+    <%- include("../partials/bs-script.ejs") %> 
+  </body>
+</html>

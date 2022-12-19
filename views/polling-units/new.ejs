@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("../partials/head.ejs") %>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container justify-content-center w-50 my-5">
+    <h1 class="text-center">Create New Polling Unit Result</h1>
+    <form action="/polling-units/new" method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username">
+      </div>
+
+      <div>
+        <label for="date">Date</label>
+        <input id="date" class="form-control" type="date" name="date" />
+      </div>
+
+      <div class="row mt-2">
+        <% for( let i = 1; i < pollingUnits.length + 1; i++ ) { %>
+        <div class="col-md-4 mt-4">
+          <label for="party<%= i %>">Party-<%= i %></label>
+          <select name="results[parties]" id="party<%= i %>" class="form-select">
+            <option value="PDP">PDP</option>
+            <option value="DPP">DPP</option>
+            <option value="ACN">ACN</option>
+            <option value="PPA">PPA</option>
+            <option value="CDC">CDC</option>
+            <option value="JP">JP</option>
+            <option value="ANPP">ANPP</option>
+            <option value="LABO">LABO</option>
+            <option value="CPP">CPP</option>
+          </select>
+
+          <label for="votes-<%= i %>" class="form-label">Votes</label>
+          <input type="number" min="0" name="results[votes]" id="votes-<%= i %>" class="form-control">
+        </div>
+        <% } %>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
+    </form>
+  </div>
+
+  <%- include("../partials/bs-script.ejs") %>
+</body>
+
+</html>

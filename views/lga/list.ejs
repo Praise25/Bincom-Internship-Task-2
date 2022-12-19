@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include("../partials/head.ejs") %> 
+  <link rel="stylesheet" href="/stylesheets/lga-list.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container d-flex justify-content-center flex-column mt-5">
+    <h3>Select an LGA to view the results of it's polling units</h3>
+
+    <form action="/lga/result" method="POST">
+      <select name="lga_id" id="lga" class="form-select">
+        <% for( let result of results) { %>
+          <option value="<%= result.lga_id %>"><%= result.lga_name %></option>
+        <% } %>
+      </select>
+
+      <button class="btn btn-success">Show Results</button>
+    </form>
+  </div>
+
+  <%- include("../partials/bs-script.ejs") %> 
+</body>
+</html>

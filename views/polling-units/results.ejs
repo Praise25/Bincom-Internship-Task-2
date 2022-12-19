@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head.ejs") %>
+    <link rel="stylesheet" href="/stylesheets/party-results.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container d-flex justify-content-center vh-100 align-items-center">
+      <div class="card" style="width: 18rem">
+        <ul class="list-group list-group-flush">
+          <% if (results.length !== 0) { %>
+            <% for( let result of results) { %>
+              <li class="list-group-item">
+                Party Name: <%= result.party_abbreviation %> 
+                <br>
+                Party Score: <%= result.party_score %> 
+              </li>
+            <% } %>
+          <% } else { %>
+            <p>There are no results available for this unit.</p>
+          <% } %> 
+        </ul>
+      </div>
+    </div>
+
+    <%- include("../partials/bs-script.ejs") %>
+  </body>
+</html>

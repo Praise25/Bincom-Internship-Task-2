@@ -5,7 +5,6 @@ module.exports.getPollingUnits = async (req, res) => {
     "SELECT * FROM  polling_unit",
     selectQueryConfig
   );
-  console.log(results);
   res.render("polling-units/units", { results });
 };
 
@@ -53,12 +52,18 @@ module.exports.createNewPollingUnit = async (req, res) => {
   res.redirect(`/polling-units/${pollingUnitUniqueId}/result`);
 };
 
-module.exports.getPollingUnitResult = async (req, res) => {
+module.exports.getPollingUnitResult = (req, res) => {
+  const id = req.body.polling_unit_id;
+  res.redirect(`/polling-units/${id}/result`)
+}
+
+module.exports.showPollingUnitResult = async (req, res) => {
   const { id } = req.params;
   const results = await sequelize.query(
     `SELECT * FROM  announced_pu_results WHERE polling_unit_uniqueid = ${id}`,
     selectQueryConfig
   );
-  console.log(results);
   res.render("polling-units/results", { results });
 };
+
+

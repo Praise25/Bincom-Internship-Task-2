@@ -5,13 +5,8 @@ module.exports.getLgaList = async (req, res) => {
   res.render("lga/list", { results });
 };
 
-module.exports.getLgaResult = async (req, res) => {
+module.exports.getLgaResult = (req, res) => {
   const { lga_id } = req.body;
-  const polling_units = await sequelize.query(
-    `SELECT * FROM polling_unit WHERE lga_id = ${lga_id}`,
-    selectQueryConfig
-  );
-  console.log(polling_units);
   res.redirect(`/lga/${lga_id}/show-result`);
 };
 
@@ -34,10 +29,12 @@ module.exports.showLgaResult = async (req, res) => {
       `SELECT * FROM announced_pu_results WHERE polling_unit_uniqueid = ${unit.uniqueid}`,
       selectQueryConfig
     );
+
     for (let result of results) {
       totalScore += result.party_score;
     }
   }
+
   const result_data = { ...lga[0], score: totalScore };
   res.render("lga/results", { result_data });
 };

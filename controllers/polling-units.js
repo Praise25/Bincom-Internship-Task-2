@@ -38,8 +38,7 @@ module.exports.createNewPollingUnit = async (req, res) => {
   const lastPollingUnit = pollingUnits[pollingUnits.length - 1];
 
   let resultId = lastPollingUnit.result_id + 1;
-  const pollingUnitUniqueId =
-    parseInt(lastPollingUnit.polling_unit_uniqueid) + 1;
+  const pollingUnitUniqueId = parseInt(lastPollingUnit.polling_unit_uniqueid) + 1;
 
   for (let i = 0; i < parties.length; i++) {
     sqlQuery = `

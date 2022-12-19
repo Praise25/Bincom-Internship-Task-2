@@ -3,3 +3,7 @@ p {
   font-weight: 700;
   text-align: center;
 }
+
+.container {
+  margin-top: 5%;
+}
